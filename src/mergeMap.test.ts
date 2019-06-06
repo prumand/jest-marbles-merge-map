@@ -2,7 +2,7 @@ import basicMergeMapObs from './mergeMap'
 import { hot, cold } from 'jest-marbles'
 import { Observable } from 'rxjs';
 
-it('returns empty stream', () => {
+it('jest-marbles empty stream', () => {
     const source = cold('-a-', {
         a: {
             type: 'TEST',
@@ -13,7 +13,7 @@ it('returns empty stream', () => {
         basicMergeMapObs(
             source,
             {
-                customOperator: () => (obs: Observable<any>) => cold('-t')
+                customOperator: () => (obs: Observable<any>) => cold('t')
             }
         )
     ).toBeObservable(
@@ -21,7 +21,7 @@ it('returns empty stream', () => {
     )
 })
 
-it('returns WE_FINISH event', () => {
+it('jest-marbles WE_FINISH event', () => {
     const source = cold('-a-', {
         a: {
             type: 'TEST',
@@ -32,7 +32,7 @@ it('returns WE_FINISH event', () => {
         basicMergeMapObs(
             source,
             {
-                customOperator: () => (obs: Observable<any>) => cold('-t')
+                customOperator: () => (obs: Observable<any>) => cold('t')
             }
         )
     ).toBeObservable(

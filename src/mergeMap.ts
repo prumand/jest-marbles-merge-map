@@ -18,11 +18,11 @@ export default function basicMergeMapObs(
 ) {
     return action$.pipe(
         ofType<Action, Test>('TEST'),
-        customOperator(),
         mergeMap((val: Action) => {
             return of(val).pipe(
-                filter((val: Test) => val.status !== 'OLD'),
-                map((val: Action) => ({
+                filter((val: Test) => val.status === 'NEW'),
+                customOperator(),
+                map((val: any) => ({
                     type: 'WE_FINISH',
                 })),
                 catchError(() => of({
