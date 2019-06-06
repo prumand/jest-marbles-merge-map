@@ -1,0 +1,31 @@
+{
+  "name": "jest-marbles-merge-map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@reactivex/rxjs": "^6.5.2",
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "jest-marbles": "^2.3.1",
+    "redux": "^4.0.1",
+    "redux-observable": "^1.1.0",
+    "rxjs": "^6.5.2",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prumand/jest-marbles-merge-map.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prumand/jest-marbles-merge-map/issues"
+  },
+  "homepage": "https://github.com/prumand/jest-marbles-merge-map#readme"
+}
