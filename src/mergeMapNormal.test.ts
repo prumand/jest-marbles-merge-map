@@ -2,61 +2,32 @@ import { TestScheduler } from 'rxjs/testing'
 import basicMergeMapObs from './mergeMap'
 import { Observable, of } from 'rxjs'
 
-const scheduler = new TestScheduler((actual, expected) => {
-    // asserting the two objects are equal
-    // e.g. using chai.
-    expect(actual).toMatchObject(expected)
-})
-
-const scheduler2 = new TestScheduler((actual, expected) => {
-    // asserting the two objects are equal
-    // e.g. using chai.
-    expect(actual).toMatchObject(expected)
-})
-
-
-it('standard empty stream', () => {
-    const source = of({
-        type: 'TEST',
-        status: 'OLD'
-    })
-
-    scheduler.run(helpers => {
-        const { cold, expectObservable } = helpers
-
-        expectObservable(
-            basicMergeMapObs(
-                source,
-                {
-                    customOperator: () => (obs: Observable<any>) => cold('a')
-                }
-            )
-        ).toBe(
-            '-'
-        )
-    })
-})
-
 it('standard WE_FINISH event', () => {
     const source = of({
         type: 'TEST',
         status: 'NEW'
     })
 
-    scheduler2.run(helpers => {
+    getScheduler().run(helpers => {
         const { expectObservable, cold } = helpers
         expectObservable(
             basicMergeMapObs(
                 source,
                 {
-                    customOperator: () => (obs: Observable<any>) => cold('a')
+                    customOperator: () => (obs: Observable<any>) => obs
                 }
             )
         ).toBe(
             't',
             {
-                t: { type: 'WE_FINISH' }
+                t: { type: 'MY_NEW_ERROR' }
             }
         )
     })
 })
+
+function getScheduler() {
+    return new TestScheduler((actual, expected) => {
+        expect(actual).toMatchObject(expected);
+    });
+}
