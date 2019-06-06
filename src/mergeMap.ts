@@ -3,15 +3,25 @@ import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap, filter } from 'rxjs/operators'
 import { Action } from 'redux'
 
+interface Test {
+    type: string,
+    status: string,
+}
+
 
 export default function basicMergeMapObs(
-    action$: Observable<any>
+    action$: Observable<any>,
+    {customOperator} : {
+        customOperator: () =>
+            (obs: Observable<any>) => Observable<any>
+    }
 ) {
     return action$.pipe(
-        ofType('TEST'),
+        ofType<Action, Test>('TEST'),
+        customOperator(),
         mergeMap((val: Action) => {
             return of(val).pipe(
-                filter((val: Action) => val.type === 'SOMETHING'),
+                filter((val: Test) => val.status !== 'OLD'),
                 map((val: Action) => ({
                     type: 'WE_FINISH',
                 })),
