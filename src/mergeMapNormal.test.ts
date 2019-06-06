@@ -12,13 +12,10 @@ it('standard WE_FINISH event', () => {
         const { expectObservable, cold } = helpers
         expectObservable(
             basicMergeMapObs(
-                source,
-                {
-                    customOperator: () => (obs: Observable<any>) => obs
-                }
+                source
             )
         ).toBe(
-            't',
+            '(t|)',
             {
                 t: { type: 'MY_NEW_ERROR' }
             }

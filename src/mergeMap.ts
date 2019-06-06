@@ -9,11 +9,7 @@ interface Test {
 }
 
 export default function basicMergeMapObs(
-    action$: Observable<any>,
-    {customOperator} : {
-        customOperator: () =>
-            (obs: Observable<any>) => Observable<any>
-    }
+    action$: Observable<any>
 ) {
     return action$.pipe(
         ofType<Action, Test>('TEST'),
@@ -22,10 +18,8 @@ export default function basicMergeMapObs(
                 filter((val: Test) => {
                     throw new Error('we use filters')
                 }),
-                customOperator(), // WE_FINISH + end
+                (obs: Observable<any>) => of('test'), // WE_FINISH! + end
                 // (obs: Observable<any>) => obs, // MY_NEW_ERROR (no end!)
-                // (() => (obs: Observable<any>) => of('test'))(), // WE_FINISH! + end
-                // (obs: Observable<any>) => of('test'), // WE_FINISH! + end
                 map((val: any) => ({
                     type: 'WE_FINISH',
                 })),
