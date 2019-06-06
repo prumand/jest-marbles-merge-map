@@ -28,11 +28,11 @@ it('standard empty stream', () => {
             basicMergeMapObs(
                 source,
                 {
-                    customOperator: () => (obs: Observable<any>) => cold('--p')
+                    customOperator: () => (obs: Observable<any>) => cold('a')
                 }
             )
         ).toBe(
-            '---'
+            '-'
         )
     })
 })
@@ -49,11 +49,11 @@ it('standard WE_FINISH event', () => {
             basicMergeMapObs(
                 source,
                 {
-                    customOperator: () => (obs: Observable<any>) => cold('--a')
+                    customOperator: () => (obs: Observable<any>) => cold('a')
                 }
             )
         ).toBe(
-            '--t',
+            't',
             {
                 t: { type: 'WE_FINISH' }
             }

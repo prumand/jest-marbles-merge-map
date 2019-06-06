@@ -3,7 +3,7 @@ import { hot, cold } from 'jest-marbles'
 import { Observable } from 'rxjs';
 
 it('jest-marbles empty stream', () => {
-    const source = cold('-a-', {
+    const source = cold('a', {
         a: {
             type: 'TEST',
             status: 'OLD'
@@ -17,12 +17,12 @@ it('jest-marbles empty stream', () => {
             }
         )
     ).toBeObservable(
-        cold('---')
+        cold('-')
     )
 })
 
 it('jest-marbles WE_FINISH event', () => {
-    const source = cold('-a-', {
+    const source = cold('a', {
         a: {
             type: 'TEST',
             status: 'NEW'
@@ -32,12 +32,12 @@ it('jest-marbles WE_FINISH event', () => {
         basicMergeMapObs(
             source,
             {
-                customOperator: () => (obs: Observable<any>) => cold('t')
+                customOperator: () => (obs: Observable<any>) => cold('a')
             }
         )
     ).toBeObservable(
-        cold('-n', {
-            n: {
+        cold('t', {
+            t: {
                 type: 'WE_FINISH'
             }
         })
