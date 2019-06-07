@@ -9,14 +9,14 @@ interface Test {
 }
 
 export default function basicMergeMapObs(
-    action$: Observable<any>
-) {
+    action$: Observable<Action>
+) : Observable<any> {
     return action$.pipe(
         ofType<Action, Test>('TEST'),
         mergeMap((val: Action) => {
             return of(val).pipe(
                 filter((val: Test) => {
-                    throw new Error('we use filters')
+                    throw new Error('We stop here')
                 }),
                 (obs: Observable<any>) => of('test'), // WE_FINISH! + end
                 // (obs: Observable<any>) => obs, // MY_NEW_ERROR (no end!)
