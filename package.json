@@ -12,7 +12,10 @@
     "redux-observable": "^1.1.0",
     "rxjs": "^6.5.2",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.5.1"
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2"
   },
   "devDependencies": {},
   "scripts": {
