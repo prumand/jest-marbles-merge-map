@@ -19,7 +19,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "build": "webpack --watch"
   },
   "repository": {
     "type": "git",
