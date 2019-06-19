@@ -1,5 +1,4 @@
 import { Observable, of } from 'rxjs'
-import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap, filter } from 'rxjs/operators'
 import { Action } from 'redux'
 
